@@ -1,0 +1,41 @@
+const express = require('express');
+const app = express();
+const dotenv = require('dotenv');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const userRouter = require('./users/user.router');
+const productRouter = require('./products/product.routes')
+const categroyRouter = require('./category/category.routes')
+const authrouter = require("./users/auth.router")
+const cartRouter = require("./products/cart/cart.route")
+const orderRouter = require ("./orders/order.route")
+
+
+dotenv.config();
+app.use(cors());
+app.use(express.json());
+
+
+mongoose.connect(process.env.URL)
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log("Failed to connect", err));
+
+app.get('/', (req, res) => {
+  res.send("created");
+});
+
+app.use('/admin/users', userRouter)
+app.use('/admin/products', productRouter)
+app.use('/admin/category', categroyRouter)
+app.use('/cart', cartRouter)
+app.use('/auth', authrouter)
+app.use('/admin/order',orderRouter)
+
+//image upload
+
+app.use('/uploads', express.static('uploads'));
+
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+});
