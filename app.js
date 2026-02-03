@@ -9,6 +9,7 @@ const categroyRouter = require('./category/category.routes')
 const authrouter = require("./users/auth.router")
 const cartRouter = require("./products/cart/cart.route")
 const orderRouter = require ("./orders/order.route")
+const successMail = require("./node-mailer/routes")
 
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use('/admin/category', categroyRouter)
 app.use('/cart', cartRouter)
 app.use('/auth', authrouter)
 app.use('/admin/order',orderRouter)
+app.use('/ordersuccessmail',successMail)
 
 //image upload
 
@@ -39,3 +41,5 @@ app.use('/uploads', express.static('uploads'));
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
+
+
