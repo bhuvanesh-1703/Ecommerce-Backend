@@ -36,10 +36,9 @@ const createCart = async (req, res) => {
 
 const getCart = async (req, res) => {
     try {
-        const { userId } = req.params;
-        const cart = await Cart.find({ userId: userId }).populate('productId').populate('userId')
+        const cart = await Cart.find().populate('productId').populate('userId')
         console.log(cart);
-        res.status(200).json({ success: true, message: "Cart successfully", data: cart });
+        res.status(200).json({ success: true, message: "Cart  successfully", data: cart });
     } catch (error) {
         res.status(500).json({ success: false, message: "Failed to view cart", error });
     }
