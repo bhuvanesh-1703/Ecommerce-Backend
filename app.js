@@ -10,6 +10,7 @@ const authrouter = require("./users/auth.router")
 const cartRouter = require("./products/cart/cart.route")
 const orderRouter = require ("./orders/order.route")
 const successMail = require("./node-mailer/routes")
+const contackRouter = require("./contactus/contact.route")
 
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/cart', cartRouter)
 app.use('/auth', authrouter)
 app.use('/admin/order',orderRouter)
 app.use('/ordersuccessmail',successMail)
+app.use('/contact', contackRouter)
 
 //image upload
 
